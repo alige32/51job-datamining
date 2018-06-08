@@ -12,7 +12,7 @@ class Job51Spider(scrapy.Spider):
     allowed_domains = ['www.51job.com', 'jobs.51job.com']
     start_urls = [
         'https://search.51job.com/list/040000%252C030200,000000,0000,00,9,99,%25E6%2595%25B0%25E6%258D%25AE%25E6%258C%2596%25E6%258E%2598,2,{}.html?lang=c&stype=1&postchannel=0000&workyear=99&cotype=99&degreefrom=99&jobterm=99&companysize=99&lonlat=0%2C0&radius=-1&ord_field=0&confirmdate=9&fromType=&dibiaoid=0&address=&line=&specialarea=00&from=&welfare='.format(
-            i) for i in range(1, 2)]
+            i) for i in range(1, 14)]
 
     def parse(self, response):
         node_list = response.xpath("//div[@class='el' and not(@id)]")
