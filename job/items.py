@@ -20,5 +20,5 @@ class JobItem(scrapy.Item):
 
 
 class DescItem(scrapy.Item):
-    position_duty = scrapy.Field()
+    position_desc = scrapy.Field()
     position_demand = scrapy.Field()

@@ -66,6 +66,7 @@ COOKIES_ENABLED = False
 # See https://doc.scrapy.org/en/latest/topics/item-pipeline.html
 ITEM_PIPELINES = {
    'job.pipelines.JobPipeline': 300,
+   'job.pipelines.DescPipeline': 400
 }
 
 # Enable and configure the AutoThrottle extension (disabled by default)
