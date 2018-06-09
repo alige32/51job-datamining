@@ -2,6 +2,7 @@
 import scrapy
 from job.items import JobItem, DescItem
 import sys
+import logging
 
 reload(sys)
 sys.setdefaultencoding('utf-8')
@@ -29,20 +30,21 @@ class Job51Spider(scrapy.Spider):
             yield item
             # item 数据交给管道处理（需要自己实现）
             # Request数据交给调度器处理（框架已经实现）
-            print item['position_link']
-            print type(item['position_link'])
+            logging.info(item['position_link'])
+            logging.info(type(item['position_link']))
             yield scrapy.Request(item['position_link'], callback=self.parse_page)
             # yield item
 
     def parse_page(self, response):
         item = DescItem()
-        print response
+        # print response
         tl = response.xpath("//div[@class='bmsg job_msg inbox']//text()").extract()
         ts = ''.join(tl)
-        print type(ts)
-        ts = ts.replace('\n', '').replace('\t', '').strip().split('分享'.encode())
-        print ts[0]
-
+        logging.info(type(ts))
+        ts = ts.replace('\n', '').replace('\t', '').strip().split('分享')
+        logging.info(ts[0])
+        logging.debug('数据类型是:{}'.format(type(ts[0])))
         item["position_desc"] = ts[0]
+        logging.info('item是{}'.format(item['position_desc']))
         item["position_demand"] = ''
         yield item
